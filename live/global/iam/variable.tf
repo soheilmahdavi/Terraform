@@ -5,7 +5,7 @@ variable "region" {
 
 variable "usernames" {
     type = list
-    default = ["user_01", "user_02"]
+    default = ["Developer_01", "developer_02", "Tester_01"]
   
 }
 
