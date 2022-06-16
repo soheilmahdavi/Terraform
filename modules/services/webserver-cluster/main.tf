@@ -10,7 +10,7 @@ terraform {
 }
 
 resource "aws_launch_configuration" "example" {
-  image_id        = "ami-0fb653ca2d3203ac1"
+  image_id        = "ami-065deacbcaac64cf2"
   instance_type   = var.instance_type
   security_groups = [aws_security_group.instance.id]
 
@@ -145,7 +145,7 @@ data "terraform_remote_state" "db" {
   config = {
     bucket = var.db_remote_state_bucket
     key    = var.db_remote_state_key
-    region = "us-east-2"
+    region = "eu-central-1"
   }
 }
 
@@ -167,3 +167,4 @@ data "aws_subnets" "default" {
     values = [data.aws_vpc.default.id]
   }
 }
+

@@ -1,7 +1,3 @@
-#####################################
-#  Staging 
-#####################################
-
 terraform {
   required_version = ">= 1.0.0, < 2.0.0"
 
@@ -14,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = "eu-central-1"
 }
 
 module "webserver_cluster" {
@@ -40,3 +36,4 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
+

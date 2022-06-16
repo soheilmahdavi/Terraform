@@ -44,3 +44,4 @@ resource "aws_autoscaling_schedule" "scale_in_at_night" {
 
   autoscaling_group_name = module.webserver_cluster.asg_name
 }
+
