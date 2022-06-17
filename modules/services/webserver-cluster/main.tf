@@ -26,6 +26,7 @@ resource "aws_launch_configuration" "example" {
   }
 }
 
+
 resource "aws_autoscaling_group" "example" {
   launch_configuration = aws_launch_configuration.example.name
   vpc_zone_identifier  = data.aws_subnets.default.ids
@@ -41,7 +42,7 @@ resource "aws_autoscaling_group" "example" {
     propagate_at_launch = true
   }
 }
-
+######################## Security group for instances ########################
 resource "aws_security_group" "instance" {
   name = "${var.cluster_name}-instance"
 }
@@ -55,6 +56,8 @@ resource "aws_security_group_rule" "allow_server_http_inbound" {
   protocol    = local.tcp_protocol
   cidr_blocks = local.all_ips
 }
+######################## instances Security group  ########################
+
 
 resource "aws_lb" "example" {
   name               = var.cluster_name
@@ -115,6 +118,8 @@ resource "aws_lb_listener_rule" "asg" {
   }
 }
 
+######################## Security group for aws loud balancer  ########################
+
 resource "aws_security_group" "alb" {
   name = "${var.cluster_name}-alb"
 }
@@ -138,6 +143,7 @@ resource "aws_security_group_rule" "allow_all_outbound" {
   protocol    = local.any_protocol
   cidr_blocks = local.all_ips
 }
+######################## Security group for aws loud balancer  ########################
 
 data "terraform_remote_state" "db" {
   backend = "s3"

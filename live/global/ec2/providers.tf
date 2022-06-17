@@ -1,9 +1,23 @@
-provider "aws" {
-    region = "eu-central-1"
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
 }
 
-resource "aws_instance" "Jenkins" {
-  ami = "ami-sdsdsdsdsdsdsd"
+provider "aws" {
+  region  = "eu-central-1"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-065deacbcaac64cf2"
   instance_type = "t2.micro"
-  key_name = "Downloads/ec2.pem"
+
+  tags = {
+    Name = "ExampleAppServerInstance2"
+  }
 }
